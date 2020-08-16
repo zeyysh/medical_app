@@ -1,4 +1,3 @@
-import 'package:aria_dr/helpers/helper.dart';
 import 'package:aria_dr/screen/guide_page1.dart';
 import 'package:aria_dr/service/user_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,9 +27,9 @@ class _SplashState extends State<Splash> {
     setState(() {
       _loading = true;
     });
-    if (await Helper.checkInternetConnection()) {
-      String token = await Helper.getLocalToken();
-    }
+//    if (await Helper.checkInternetConnection()) {
+//      String token = await Helper.getLocalToken();
+    //   }
   }
 
   @override

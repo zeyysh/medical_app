@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:aria_dr/model/user.dart';
 import 'package:aria_dr/service/user_service.dart';
-import 'package:connectivity/connectivity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Helper {
@@ -13,7 +12,6 @@ class Helper {
   static UserService _userService = UserService();
 
   static SharedPreferences _sharedPreferences;
-
 
   static setToken(String value) {
     _token = value;
@@ -27,7 +25,6 @@ class Helper {
       return token;
     }
   }
-
 
   static setUser(User value) {
     _user = value;
@@ -58,9 +55,9 @@ class Helper {
   }
 
   static Future<bool> checkInternetConnection() async {
-    var connectivityResult = await (new Connectivity().checkConnectivity());
-    return connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi;
+//    var connectivityResult = await (new Connectivity().checkConnectivity());
+//    return connectivityResult == ConnectivityResult.mobile ||
+//        connectivityResult == ConnectivityResult.wifi;
   }
 
   static Future<User> getLocalUser() async {
@@ -82,5 +79,4 @@ class Helper {
       return "";
     }
   }
-
 }

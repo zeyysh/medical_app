@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'doctors_list_screen.dart';
+
 class MainScreen extends StatefulWidget {
   static const String id = "MainScreenId";
 
@@ -69,241 +71,68 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'تنظیمات',
-      style: optionStyle,
-    ),
-    SearchScreen(),
-//    Text(
-//      'جستجو',
-//      style: optionStyle,
-//    ),
-    ListView(
-      children: <Widget>[
-        GestureDetector(
-          //onTap: ()=> Navigator.of(context).pushNamed(DoctorListScreen.id),
-          child: Container(
-            width: 321,
-            height: 58,
-            margin: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.blueGrey, width: 1),
-              shape: BoxShape.rectangle,
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              boxShadow: [
-                new BoxShadow(
-                    color: Color.fromARGB(50, 0, 0, 0),
-                    offset: new Offset(20.0, 10.0),
-                    blurRadius: 12.0,
-                    spreadRadius: 10.0)
-              ],
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                'جستجوی نام پزشک ، تخصص ، مرکز درمانی و ...',
-                textDirection: TextDirection.rtl,
-                style: TextStyle(
-                  fontSize: 16,
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      Text(
+        'تنظیمات',
+        style: optionStyle,
+      ),
+//      Text(
+//        'جستجو',
+//        style: optionStyle,
+//      ),
+      SearchScreen(),
+      ListView(
+        children: <Widget>[
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed(DoctorListScreen.id),
+            child: Container(
+              width: 321,
+              height: 58,
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.blueGrey, width: 1),
+                shape: BoxShape.rectangle,
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                boxShadow: [
+                  new BoxShadow(
+                      color: Color.fromARGB(50, 0, 0, 0),
+                      offset: new Offset(20.0, 10.0),
+                      blurRadius: 12.0,
+                      spreadRadius: 10.0)
+                ],
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  'جستجوی نام پزشک ، تخصص ، مرکز درمانی و ...',
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        GridView.count(
-          shrinkWrap: true,
-          primary: false,
-          padding: const EdgeInsets.all(20),
-          crossAxisSpacing: 30,
-          mainAxisSpacing: 20,
-          crossAxisCount: 2,
-          childAspectRatio: (160 / 130),
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.blueGrey, width: 1),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
-                  new BoxShadow(
-                      color: Color.fromARGB(50, 0, 0, 0),
-                      offset: new Offset(20.0, 10.0),
-                      blurRadius: 12.0,
-                      spreadRadius: 10.0)
-                ],
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'مراکز درمانی',
-                          textDirection: TextDirection.rtl,
-                          style:
-                              TextStyle(fontSize: 18, fontFamily: 'BTraffic'),
-                        ),
-                      ),
-                      Image(
-                        image: _image1.image,
-                        height: 50,
-                        width: 50,
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'بیمارستان ، کلینیک ، آزمایشگاه',
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.blueGrey, width: 1),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
-                  new BoxShadow(
-                      color: Color.fromARGB(50, 0, 0, 0),
-                      offset: new Offset(20.0, 10.0),
-                      blurRadius: 12.0,
-                      spreadRadius: 10.0)
-                ],
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'سوابق سلامتی',
-                          textDirection: TextDirection.rtl,
-                          style:
-                              TextStyle(fontSize: 18, fontFamily: 'BTraffic'),
-                        ),
-                      ),
-                      Image(
-                        image: _image2.image,
-                        width: 50,
-                        height: 50,
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'نوبت های من ، سوابق سلامتی',
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.blueGrey, width: 1),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
-                  new BoxShadow(
-                      color: Color.fromARGB(50, 0, 0, 0),
-                      offset: new Offset(20.0, 10.0),
-                      blurRadius: 12.0,
-                      spreadRadius: 10.0)
-                ],
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'مشاوره آنلاین',
-                          textDirection: TextDirection.rtl,
-                          style:
-                              TextStyle(fontSize: 18, fontFamily: 'BTraffic'),
-                        ),
-                      ),
-                      Image(
-                        image: _image3.image,
-                        width: 50,
-                        height: 50,
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'دریافت مشاوره تلفنی از بهترین ' + 'پزشکان ایران',
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.blueGrey, width: 1),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
-                  new BoxShadow(
-                      color: Color.fromARGB(50, 0, 0, 0),
-                      offset: new Offset(20.0, 10.0),
-                      blurRadius: 12.0,
-                      spreadRadius: 10.0)
-                ],
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'نوبت های من',
-                          textDirection: TextDirection.rtl,
-                          style:
-                              TextStyle(fontSize: 18, fontFamily: 'BTraffic'),
-                        ),
-                      ),
-                      Image(
-                        image: _image2.image,
-                        width: 50,
-                        height: 50,
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'سابقه ی نوبت های بیمار',
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            GestureDetector(
-              //onTap: ()=> Navigator.of(context).pushNamed(DoctorListScreen.id),
-              child: Container(
+          GridView.count(
+            shrinkWrap: true,
+            primary: false,
+            padding: const EdgeInsets.all(20),
+            crossAxisSpacing: 30,
+            mainAxisSpacing: 20,
+            crossAxisCount: 2,
+            childAspectRatio: (160 / 130),
+            children: <Widget>[
+              Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.blueGrey, width: 1),
                   shape: BoxShape.rectangle,
@@ -324,7 +153,52 @@ class _MainScreenState extends State<MainScreen> {
                       children: <Widget>[
                         Expanded(
                           child: Text(
-                            'پزشکان',
+                            'مراکز درمانی',
+                            textDirection: TextDirection.rtl,
+                            style:
+                                TextStyle(fontSize: 18, fontFamily: 'BTraffic'),
+                          ),
+                        ),
+                        Image(
+                          image: _image1.image,
+                          height: 50,
+                          width: 50,
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'بیمارستان ، کلینیک ، آزمایشگاه',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueGrey, width: 1),
+                  shape: BoxShape.rectangle,
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  boxShadow: [
+                    new BoxShadow(
+                        color: Color.fromARGB(50, 0, 0, 0),
+                        offset: new Offset(20.0, 10.0),
+                        blurRadius: 12.0,
+                        spreadRadius: 10.0)
+                  ],
+                ),
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'سوابق سلامتی',
                             textDirection: TextDirection.rtl,
                             style:
                                 TextStyle(fontSize: 18, fontFamily: 'BTraffic'),
@@ -340,7 +214,7 @@ class _MainScreenState extends State<MainScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'جستجو،دریافت نوبت و مشاوره',
+                        'نوبت های من ، سوابق سلامتی',
                         textDirection: TextDirection.rtl,
                         style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
                       ),
@@ -348,70 +222,200 @@ class _MainScreenState extends State<MainScreen> {
                   ],
                 ),
               ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.blueGrey, width: 1),
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
-                  new BoxShadow(
-                      color: Color.fromARGB(50, 0, 0, 0),
-                      offset: new Offset(20.0, 10.0),
-                      blurRadius: 12.0,
-                      spreadRadius: 10.0)
-                ],
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'پرسش و پاسخ',
-                          textDirection: TextDirection.rtl,
-                          style:
-                              TextStyle(fontSize: 18, fontFamily: 'BTraffic'),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueGrey, width: 1),
+                  shape: BoxShape.rectangle,
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  boxShadow: [
+                    new BoxShadow(
+                        color: Color.fromARGB(50, 0, 0, 0),
+                        offset: new Offset(20.0, 10.0),
+                        blurRadius: 12.0,
+                        spreadRadius: 10.0)
+                  ],
+                ),
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'مشاوره آنلاین',
+                            textDirection: TextDirection.rtl,
+                            style:
+                                TextStyle(fontSize: 18, fontFamily: 'BTraffic'),
+                          ),
                         ),
+                        Image(
+                          image: _image3.image,
+                          width: 50,
+                          height: 50,
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'دریافت مشاوره تلفنی از بهترین ' + 'پزشکان ایران',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
                       ),
-                      Image(
-                        image: _image6.image,
-                        width: 50,
-                        height: 50,
-                      )
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueGrey, width: 1),
+                  shape: BoxShape.rectangle,
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  boxShadow: [
+                    new BoxShadow(
+                        color: Color.fromARGB(50, 0, 0, 0),
+                        offset: new Offset(20.0, 10.0),
+                        blurRadius: 12.0,
+                        spreadRadius: 10.0)
+                  ],
+                ),
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'نوبت های من',
+                            textDirection: TextDirection.rtl,
+                            style:
+                                TextStyle(fontSize: 18, fontFamily: 'BTraffic'),
+                          ),
+                        ),
+                        Image(
+                          image: _image2.image,
+                          width: 50,
+                          height: 50,
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'سابقه ی نوبت های بیمار',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: () =>
+                    Navigator.of(context).pushNamed(DoctorListScreen.id),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blueGrey, width: 1),
+                    shape: BoxShape.rectangle,
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    boxShadow: [
+                      new BoxShadow(
+                          color: Color.fromARGB(50, 0, 0, 0),
+                          offset: new Offset(20.0, 10.0),
+                          blurRadius: 12.0,
+                          spreadRadius: 10.0)
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'ارتباط با پزشک و افراد با تجربه ' + 'مشترک',
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
-                    ),
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                              'پزشکان',
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                  fontSize: 18, fontFamily: 'BTraffic'),
+                            ),
+                          ),
+                          Image(
+                            image: _image2.image,
+                            width: 50,
+                            height: 50,
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'جستجو،دریافت نوبت و مشاوره',
+                          textDirection: TextDirection.rtl,
+                          style:
+                              TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
-    ),
-    Text(
-      'پروفایل',
-      style: optionStyle,
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueGrey, width: 1),
+                  shape: BoxShape.rectangle,
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  boxShadow: [
+                    new BoxShadow(
+                        color: Color.fromARGB(50, 0, 0, 0),
+                        offset: new Offset(20.0, 10.0),
+                        blurRadius: 12.0,
+                        spreadRadius: 10.0)
+                  ],
+                ),
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'پرسش و پاسخ',
+                            textDirection: TextDirection.rtl,
+                            style:
+                                TextStyle(fontSize: 18, fontFamily: 'BTraffic'),
+                          ),
+                        ),
+                        Image(
+                          image: _image6.image,
+                          width: 50,
+                          height: 50,
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'ارتباط با پزشک و افراد با تجربه ' + 'مشترک',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      Text(
+        'پروفایل',
+        style: optionStyle,
+      ),
+    ];
     return MaterialApp(
       builder: (context, widget) => ResponsiveWrapper.builder(
         BouncingScrollWrapper.builder(context, widget),
@@ -484,9 +488,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ],
                 ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
+                onTap: () {},
               ),
               ListTile(
                 title: Row(
@@ -504,9 +506,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ],
                 ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
+                onTap: () {},
               ),
               ListTile(
                 title: Row(
@@ -524,9 +524,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ],
                 ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
+                onTap: () {},
               ),
               ListTile(
                 title: Row(
@@ -544,9 +542,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ],
                 ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
+                onTap: () {},
               ),
               Divider(
                 color: Colors.black12,
@@ -569,9 +565,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ],
                 ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
+                onTap: () {},
               ),
               ListTile(
                 title: Row(
@@ -589,9 +583,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ],
                 ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
+                onTap: () {},
               ),
             ],
           ),
@@ -623,7 +615,7 @@ class _MainScreenState extends State<MainScreen> {
           ],
         ),
         body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
+          child: _widgetOptions[_selectedIndex],
         ),
       ),
     );
