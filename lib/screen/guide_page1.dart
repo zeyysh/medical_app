@@ -67,7 +67,7 @@ class _GuidePage1State extends State<GuidePage1> {
             Container(
               width: 311,
               height: 46,
-              margin: EdgeInsets.only(top: 170),
+              margin: EdgeInsets.only(top: 100),
               decoration: BoxDecoration(
                 boxShadow: [
                   new BoxShadow(

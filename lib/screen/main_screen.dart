@@ -2,7 +2,6 @@ import 'package:aria_dr/helpers/custom_colors.dart';
 import 'package:aria_dr/screen/search_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 import 'doctors_list_screen.dart';
 
@@ -259,7 +258,7 @@ class _MainScreenState extends State<MainScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'دریافت مشاوره تلفنی از بهترین ' + 'پزشکان ایران',
+                        'دریافت مشاوره تلفنی از بهترین ',
                         textDirection: TextDirection.rtl,
                         style: TextStyle(fontSize: 14, fontFamily: 'BTraffic'),
                       ),
@@ -417,19 +416,19 @@ class _MainScreenState extends State<MainScreen> {
       ),
     ];
     return MaterialApp(
-      builder: (context, widget) => ResponsiveWrapper.builder(
-        BouncingScrollWrapper.builder(context, widget),
-        maxWidth: 1200,
-        minWidth: 450,
-        defaultScale: true,
-        breakpoints: [
-          ResponsiveBreakpoint.resize(450, name: MOBILE),
-          ResponsiveBreakpoint.autoScale(800, name: TABLET),
-          ResponsiveBreakpoint.autoScale(1000, name: TABLET),
-          ResponsiveBreakpoint.resize(1200, name: DESKTOP),
-          ResponsiveBreakpoint.autoScale(2460, name: "4K"),
-        ],
-      ),
+//      builder: (context, widget) => ResponsiveWrapper.builder(
+//        BouncingScrollWrapper.builder(context, widget),
+//        maxWidth: 1200,
+//        minWidth: 450,
+//        defaultScale: true,
+//        breakpoints: [
+//          ResponsiveBreakpoint.resize(450, name: MOBILE),
+//          ResponsiveBreakpoint.autoScale(800, name: TABLET),
+//          ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+//          ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+//          ResponsiveBreakpoint.autoScale(2460, name: "4K"),
+//        ],
+//      ),
       debugShowCheckedModeBanner: false,
       title: 'main screen',
       home: Scaffold(

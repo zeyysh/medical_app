@@ -15,7 +15,7 @@ class DoctorListScreen extends StatefulWidget {
 
 class _DoctorListScreenState extends State<DoctorListScreen> {
   Future<List<Doctor>> getData() async {
-    var url = "http://10.0.2.2:80/test.php";
+    var url = "http://192.168.1.7:80/test.php";
     final response = await http.get(url);
     if (response.statusCode == 200) {
       List doctors = jsonDecode(response.body);
